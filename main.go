@@ -8,7 +8,7 @@ import (
 	"math/cmplx"
 	"time"
 
-	"github.com/gordonklaus/portaudio"
+	"github.com/hophiphip/portaudio"
 	"github.com/recws-org/recws"
 	"gonum.org/v1/gonum/dsp/fourier"
 )
