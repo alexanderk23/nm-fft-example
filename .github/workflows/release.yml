@@ -32,7 +32,7 @@ jobs:
         go-version: '1.24.1'
 
     - name: Setup dependencies (Ubuntu)
-      if: startsWith(matrix.os, 'ubuntu')
+      if: ${{ startsWith(matrix.os, 'ubuntu') }}
       run: |
         sudo apt-get install -y libasound2-dev
 
@@ -40,9 +40,15 @@ jobs:
       working-directory: ${{ github.workspace }}
       run: go build -o ${{ github.workspace }}/build/${{ matrix.target }}
 
-    - name: Zip
+    - name: Zip (non-Windows)
+      if: ${{ !startsWith(matrix.os, 'windows') }}
       working-directory: ${{ github.workspace }}/build
       run: zip ${{ matrix.target }}.zip ${{ matrix.target }}
+
+    - name: Zip (Windows)
+      if: ${{ startsWith(matrix.os, 'windows') }}
+      working-directory: ${{ github.workspace }}/build
+      run: Compress-Archive -Path ${{ matrix.target }} -Destination ${{ matrix.target }}.zip
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
