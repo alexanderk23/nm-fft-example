@@ -42,7 +42,7 @@ jobs:
       run: go build -o ${{ github.workspace }}/build/${{ matrix.target }}
 
     - name: Zip
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/build
       run: zip ${{ matrix.target }}.zip ${{ matrix.target }}
 
     - name: Upload Artifacts
