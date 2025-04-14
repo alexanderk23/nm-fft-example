@@ -1,7 +1,7 @@
 		org $8000
 
 FFT_DST_ADDR	= $4000
-FFT_BASE_PORT	= $20fb
+FFT_BASE_PORT	= $03fb
 
 		call init
 
